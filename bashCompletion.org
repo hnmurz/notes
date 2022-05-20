@@ -1,0 +1,38 @@
+In a bash environement, when using a command it's convenient to be able to hit =Tab= while
+typing an argument and see the command autocomplete whatever we were wanting it to. This
+is not done by magic, but is done using mechanisms built into bash. Here is a simple
+example, note: ~<tab>~ notates when I hit the =Tab= key, and ~>~ notates my prompt:
+
+#+BEGIN_EXAMPLE
+> foo <tab>
+bar     baz     foobar  foobaz
+> foo f<tab>
+> foo fooba
+#+END_EXAMPLE
+
+As we can see, ~<tab>~ completes the common denominator, in the example above, =f=
+expanded to =fooba=, since the 2 completion candidates are common up into that point.
+
+To inspect what's going on, we can use the ~complete~ bash builtin to see what completion
+mechanism is used for a command, and we can use the ~type~ bash builtin to inspect the
+defined functions:
+
+#+BEGIN_EXAMPLE
+> complete -p foo
+complete -F _foo foo
+> type _foo
+_foo is a function
+_foo ()
+{
+    local cmd="$1";
+    local cur="$2";
+    local prev="$3";
+    local compList=(bar baz foobar foobaz);
+    COMPREPLY=($(compgen -W '${compList[@]}' -- $2))
+}
+#+END_EXAMPLE
+
+References:
+https://www.gnu.org/software/bash/manual/html_node/Command-Line-Editing.html
+man complete
+man type
