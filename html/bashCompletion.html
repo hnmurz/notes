@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-05-23 Mon 17:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bash Tab Completion</title>
+<meta name="author" content="hnm" />
+<meta name="description" content="Information about how tab completion works in BASH." />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet"
+                         href="../style.css"
+                         type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Bash Tab Completion</h1>
+<p>
+In a bash environment, when using a command it's convenient to be able to hit <code>Tab</code> while
+typing an argument and see the command autocomplete whatever we were wanting it to. This
+is not done by magic, but is done using mechanisms built into bash. Here is a simple
+example, note: <code>&lt;tab&gt;</code> notates when I hit the <code>Tab</code> key, and <code>&gt;</code> notates my prompt:
+</p>
+
+<pre class="example" id="org4e5a47d">
+&gt; foo &lt;tab&gt;
+bar     baz     foobar  foobaz
+&gt; foo f&lt;tab&gt;
+&gt; foo fooba
+</pre>
+
+<p>
+As we can see, <code>&lt;tab&gt;</code> completes the common denominator, in the example above, <code>f</code>
+expanded to <code>fooba</code>, since the 2 completion candidates are common up until that point.
+</p>
+
+<p>
+To inspect what's going on, we can use the <code>complete</code> bash builtin to see what completion
+mechanism is used for a command, and we can use the <code>type</code> bash builtin to inspect the
+defined functions:
+</p>
+
+<pre class="example" id="orgc36bf11">
+&gt; complete -p foo
+complete -F _foo foo
+&gt; type _foo
+_foo is a function
+_foo ()
+{
+    local cmd="$1";
+    local cur="$2";
+    local prev="$3";
+    local compList=(bar baz foobar foobaz);
+    COMPREPLY=($(compgen -W '${compList[@]}' -- $2))
+}
+</pre>
+
+<p>
+References:
+<a href="https://www.gnu.org/software/bash/manual/html_node/Command-Line-Editing.html">https://www.gnu.org/software/bash/manual/html_node/Command-Line-Editing.html</a>
+man complete
+man type
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Last Updated: 2022-05-23 Mon 17:02
+</p>
+</div>
+</body>
+</html>

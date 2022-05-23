@@ -1,4 +1,7 @@
-Some funny jokes that my wife and I come up with. These jokes are primarily my wife's.
+#+OPTIONS: \n:t
+Some funny jokes that my wife and I have come up with. I can't take credit for all of
+these jokes since some of them are my wife's.
+
 
 Q: What does the hulk say when he is programming?
 A: HULK BASH!
