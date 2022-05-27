@@ -1,6 +1,7 @@
+#+title: Jokes
 #+OPTIONS: \n:t
-Some funny jokes that my wife and I have come up with. I can't take credit for all of
-these jokes since some of them are my wife's.
+#+description: Some funny jokes that my wife and I have come up with. I can't take credit
+#+description: for all these jokes since some of them are my wife's.
 
 
 Q: What does the hulk say when he is programming?

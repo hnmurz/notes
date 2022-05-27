@@ -1,0 +1,29 @@
+/* This will apply to everything in div id=content which is
+   essentially the whole webpage.*/
+
+body {
+    /* padding:0; */
+    /* height: 100%; */
+    max-width: 60em;
+    margin: auto;
+    background-color: ghostwhite;
+}
+/* For paragraph text */
+p {
+    text-align: justify;
+}
+/* For preformated text (think, text block examples etc) */
+pre {
+    background: cornsilk;
+    border-radius: 5px;
+}
+
+code {
+    color: #551a8b;
+    font-weight: bold;
+}
+
+#postamble {
+    font-size: x-small;
+    font-weight: lighter;
+}

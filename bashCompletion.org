@@ -1,5 +1,7 @@
 #+title: Bash Tab Completion
 #+description: Information about how tab completion works in BASH.
+#+bibliography: references.bib
+#+cite_export: csl /home/hmuresan/notes/ieee-with-url.csl
 
 In a bash environment, when using a command it's convenient to be able to hit =Tab= while
 typing an argument and see the command autocomplete whatever we were wanting it to. This
@@ -16,9 +18,9 @@ bar     baz     foobar  foobaz
 As we can see, ~<tab>~ completes the common denominator, in the example above, =f=
 expanded to =fooba=, since the 2 completion candidates are common up until that point.
 
-To inspect what's going on, we can use the ~complete~ bash builtin to see what completion
+To inspect what's going on, we can use the ~complete~ bash builtin [cite:@BashRef] to see what completion
 mechanism is used for a command, and we can use the ~type~ bash builtin to inspect the
-defined functions:
+defined functions: 
 
 #+BEGIN_EXAMPLE
 > complete -p foo
@@ -35,6 +37,8 @@ _foo ()
 }
 #+END_EXAMPLE
 
+
+#+print_bibliography:
 References:
 https://www.gnu.org/software/bash/manual/html_node/Command-Line-Editing.html
 man complete

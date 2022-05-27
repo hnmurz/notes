@@ -1,0 +1,8 @@
+#+title: Citations, bibtex, and Citation Style Language (CSL)
+#+description: Information bibtex and CSL
+#+bibliography: references.bib
+#+cite_export: csl hnm.csl
+
+This is to primarily serve as a reference for myself, but for posterity I will cover the
+basics of BibTex and how to define a custom csl file. The authoritative collection of csl
+styles seems to be hosted on [[https://www.zotero.org/styles][Zotero]].
