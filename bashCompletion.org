@@ -2,6 +2,7 @@
 #+description: Information about how tab completion works in BASH.
 #+bibliography: references.bib
 #+cite_export: csl /home/hmuresan/notes/ieee-with-url.csl
+#+index: Programming!Bash Tab Completion
 
 In a bash environment, when using a command it's convenient to be able to hit =Tab= while
 typing an argument and see the command autocomplete whatever we were wanting it to. This
