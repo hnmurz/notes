@@ -6,3 +6,25 @@
 This is to primarily serve as a reference for myself, but for posterity I will cover the
 basics of BibTex and how to define a custom csl file. The authoritative collection of csl
 styles seems to be hosted on [[https://www.zotero.org/styles][Zotero]].
+
+Let's dig into the contents of a csl file. A lot of this is already described to us in the
+CSL specification [cite:@CSL_Spec], but I'll reiterate it mainly for my own benefit.
+
+#+begin_src xml
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0">
+#+end_src
+
+Line 1 is nothing CSL specific, this is just a style or local declaration that XML files
+use. Line 2 is the interesting part, this is where we will be describing our CSL style.
+Looking at some of the variables, the first element, ~xmlns~ is something that is inherent
+to XML documents, it specifies a name space [cite:@Namespaces_in_XML]. In short, this is
+just to avoid clobbering common element names. It accomplishes this by appending the name
+space to each element to make it unique. As per the [[https://docs.citationstyles.org/en/stable/specification.html#namespacing][CSL specification]], we are to use
+~http://purl.org/net/xbiblio/csl~ for CSL files. The class, and version are internal to
+CSL and are described [[https://docs.citationstyles.org/en/stable/specification.html#styles-structure][here]]. At the moment, class can either be "note", or "in-text", and
+version must be "1.0" in order to be CSL 1.0 compatible.
+
+
+
+
