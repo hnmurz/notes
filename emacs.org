@@ -1,5 +1,22 @@
-|-----------------+-------------+-------|
-| Command         | Description | Kbd   |
-|-----------------+-------------+-------|
-| balance-windows |             | C-x + |
-|                 |             |       |
+|------------------------------+-------+-----------+-----------------------------------------|
+| Command                      | Kbd   | Modes     | Description                             |
+|------------------------------+-------+-----------+-----------------------------------------|
+| balance-windows              | C-x + |           |                                         |
+| clone-buffer                 | M-n   | Info-mode | Useful for making multiple info buffers |
+| what-cursor-position         | C-x = |           | Pass in prefix to see faces etc         |
+| string-inflection-camel-case |       |           | Convert strings to camelCase            |
+|------------------------------+-------+-----------+-----------------------------------------|
+
+* Updating all packages
+In order to update all installed packages, type package-list-packages, which will take you to the *Packages* buffer (and also update the list of packages), and then type U x. 
+
+* Completion at point
+tags-completion-at-point-function
+
+* Org mode
+|-------------------------------+---------+-------------------------------|
+| Command                       | Kbd     | Description                   |
+|-------------------------------+---------+-------------------------------|
+| org-insert-structure-template | C-c C-, |                               |
+| org-table-recalculate         | C-c *   | Updates cells based on tblfms |
+|-------------------------------+---------+-------------------------------|

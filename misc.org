@@ -1,0 +1,3 @@
+* Aspell
+# To use aspell in a REPL like mode for english:
+aspell -l en -a
