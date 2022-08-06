@@ -21,7 +21,7 @@ expanded to =fooba=, since the 2 completion candidates are common up until that 
 
 To inspect what's going on, we can use the ~complete~ bash builtin [cite:@BashRef] to see what completion
 mechanism is used for a command, and we can use the ~type~ bash builtin to inspect the
-defined functions: 
+defined functions:
 
 #+BEGIN_EXAMPLE
 > complete -p foo

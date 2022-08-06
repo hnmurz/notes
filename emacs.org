@@ -5,14 +5,32 @@
 | clone-buffer                 | M-n   | Info-mode | Useful for making multiple info buffers |
 | what-cursor-position         | C-x = |           | Pass in prefix to see faces etc         |
 | string-inflection-camel-case |       |           | Convert strings to camelCase            |
+| fill-paragraph               | M-q   |           | Makes text fit into fill-column         |
 |------------------------------+-------+-----------+-----------------------------------------|
 
+* Compiling Emacs
+For whatever reason if you run into undefined errors or what not, ensure you are running a
+~make bootstrap~ before trying to compile.
+
+#+begin_example
+./configure
+make bootstrap
+make -j4
+sudo make install
+#+end_example
 * Updating all packages
-In order to update all installed packages, type package-list-packages, which will take you to the *Packages* buffer (and also update the list of packages), and then type U x. 
+In order to update all installed packages, type package-list-packages, which will take you to the *Packages* buffer (and also update the list of packages), and then type U x.
+
+* Viewing package dependencies
+Inspect variable package-alist
 
 * Completion at point
 tags-completion-at-point-function
 
+* Helm
+Inside helm-minimap
+C-space to select
+C-D to delete
 * Org mode
 |-------------------------------+---------+-------------------------------|
 | Command                       | Kbd     | Description                   |
@@ -20,3 +38,79 @@ tags-completion-at-point-function
 | org-insert-structure-template | C-c C-, |                               |
 | org-table-recalculate         | C-c *   | Updates cells based on tblfms |
 |-------------------------------+---------+-------------------------------|
+* Keymaps
+set-transient-map is orthogonal to whether a keymap is full or sparse, but is related to
+keymap priority. As per it's doc string we can see set-transient-map sets the value for
+overriding-terminal-local-map, the result, is that whatever keymap specified will have the
+highest precedence. Emacs keymap priority follows this order of precedence:
+
+    1. overriding-terminal-local-map
+    2. overriding-local-map
+    3. emulation-mode-map-alists
+    4. minor-mode-overriding-map-alist
+    5. minor-mode-map-alist
+    6. current-local-map
+    7. current-global-map
+
+Source: https://www.masteringemacs.org/article/mastering-key-bindings-emacs#keymap-lookup-order
+
+* Elisp
+|---------------+-------------------------|
+| Command       | Description             |
+|---------------+-------------------------|
+| string-search | Find needle in haystack |
+| symbol-name   | symbol->string          |
+| intern        | string->symbol          |
+| intern-soft   | string->symbol          |
+|---------------+-------------------------|
+** Symbol to String or String to Symbol
+# symbol->String
+symbol-name
+
+# String->symbol
+intern
+intern-soft
+
+** Macros
+Macros are useful when we want to define symbols at runtime.
+
+Nice reference:
+https://emacs.stackexchange.com/questions/70483/create-a-function-that-returns-a-new-function-definition
+Example from site:
+#+begin_src emacs-lisp
+(defmacro lw/define-loadable (fn-name mod-name)
+  `(defun ,fn-name ()
+    (interactive)
+    (print (concat "../modules/" ,mod-name))))
+
+;; Example call:
+(lw/define-loadable my "you")
+(my)
+;; "../modules/you"
+#+end_src
+
+** fset
+Similar to macros, we can define functions at runtime using fset.
+
+Nice reference:
+https://emacs.stackexchange.com/questions/70483/create-a-function-that-returns-a-new-function-definition
+Example from site:
+#+begin_src emacs-lisp
+(defun lw/define-loadable-2 (fn-name mod-name)
+  (fset fn-name
+        (lambda ()
+          (interactive)
+          (print (concat "../modules/" mod-name)))))
+
+;; Example call
+(lw/define-loadable-2 'my2 "you")
+(my2)
+;; "../modules/you"
+#+end_src
+
+* EDebug
+|-------------------------------+-----+---------------------------------------|
+| Command                       | Kbd | Description                           |
+|-------------------------------+-----+---------------------------------------|
+| edebug-remove-instrumentation |     | Remove instrumentation from functions |
+|-------------------------------+-----+---------------------------------------|

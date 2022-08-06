@@ -1,0 +1,31 @@
+#+title: Cygwin
+#+description: Notes about Cygwin
+#+cite_export: csl /home/hmuresan/notes/ieee-with-url.csl
+#+index: Cygwin
+
+* Compiling Mosh
+When checking out source ensure we don't have autocrlf configured for git:
+#+begin_src
+ git config --get core.autocrlf
+ git config --unset core.autocrlf
+#+end_src
+
+If you encounter SSL errors you might need to do:
+#+begin_src
+git config --global http.sslbackend schannel
+#+end_src
+See discussion [[https://stackoverflow.com/questions/23885449/unable-to-resolve-unable-to-get-local-issuer-certificate-using-git-on-windows][here]].
+- Install ~autoconf~, ~automake~
+
+* Troubleshooting
+** Can't exec "aclocal"
+#+begin_example
+Can't exec "aclocal": No such file or directory at /usr/share/autoconf2.7/Autom4te/FileUtils.pm line 274.
+autoreconf-2.71: error: aclocal failed with exit status: 1
+#+end_example
+To fix this, install ~automake~
+** aminclude_static.am
+#+begin_example
+automake-1.16: error: cannot open < aminclude_static.am: No such file or directory
+#+end_example
+To fix this, install ~autoconf-archive~, ~libtool~? Still havent been able to fix
